@@ -11,7 +11,8 @@ public class Simulation {
         int max = 20000;
         int min = 10000;
         int r = (int)(Math.random() * (max - min)) + min;
-        return (r % 15000 + 4000);
+        //return (r % 15000 + 4000);
+        return (r % 15000 + 4501); //minimum req to safely land
     }
 
 
@@ -65,6 +66,9 @@ public class Simulation {
                 printString(getHeader());
             }
         }
+        //???
+        status = vehicle.getStatus(burnInterval);
+        //??
         printString(vehicle.checkFinalStatus());
         if (status != null) {
             return status.getStatus();
@@ -72,10 +76,21 @@ public class Simulation {
         return -1;
     }
 
-    public static void main(String[] args) {
+    //public static void main(String[] args) {
         // create a new Simulation object with a random starting altitude
+        //int altitude = randomaltitude();
+        //Vehicle elon = new Vehicle(altitude);
+        //Simulation spaceX = new Simulation(elon);
         // create a new BurnInputStream
+        //BurnStream burnSource = new BurnDataStream();
         // pass the new BurnInputStream to the runSimulation method
+        //spaceX.runSimulation(burnSource);
+    //}
+
+    public static void main(String[] args) {
+        Simulation game = new Simulation(new Vehicle(Simulation.randomaltitude()));
+        BurnStream burnSource = new BurnInputStream();
+        game.runSimulation(burnSource);
     }
 
 }
